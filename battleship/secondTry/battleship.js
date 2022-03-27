@@ -21,9 +21,9 @@ let model = {
     numShips: 3,
 
     ships: [
-        {locations: ["06", "16", "26"], hits: ["", "", ""]},
-        {locations: ["24", "34", "44"], hits: ["", "", ""]},
-        {locations: ["10", "11", "12"], hits: ["", "", ""]}],
+        {locations: [0, 0, 0], hits: ["", "", ""]},
+        {locations: [0, 0, 0], hits: ["", "", ""]},
+        {locations: [0, 0, 0], hits: ["", "", ""]}],
 
     shipsSunk: 0,
 
@@ -58,6 +58,52 @@ let model = {
             }
         }
         return true;
+    },
+
+    generateShipLocation: function () {
+        let locations;
+        for (let i = 0; i < this.numShips; i++) {
+            do {
+                locations = this.generateShip();
+            } while (this.collision(locations));
+            this.ships[i].locations = locations;
+        }
+    },
+
+    generateShip: function () {
+        let direction = Math.floor(Math.random() * 2);
+        let row, col;
+
+        if (direction === 1) {
+            row = (Math.floor(Math.random() * this.boardSize));
+            col = (Math.floor(Math.random() * this.boardSize - this.shipLength));
+
+        } else {
+            row = (Math.floor(Math.random() * this.boardSize - this.shipLength));
+            col = (Math.floor(Math.random() * this.boardSize));
+
+        }
+        let newShipLocations = [];
+        for (let i = 0; i < this.shipLength; i++) {
+            if (direction === 1) {
+                newShipLocations.push(row + "" + (col + i));
+            } else {
+                newShipLocations.push((row + i) + "" + col);
+            }
+        }
+        return newShipLocations;
+    },
+
+    collision: function (locations) {
+        for (let i = 0; i < this.numShips; i++) {
+            let ship = model.ships[i]
+            for (let j = 0; j < locations.length; j++) {
+                if (ship.locations.indexOf(locations[j]) >= 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
 
@@ -69,7 +115,7 @@ let controller = {
             this.guesses++;
             let hit = model.fire(location);
             if (hit && model.shipsSunk === model.numShips) {
-                view.displayMessage("Вы затопили все мои военные корабли!<br>" + "Колличество выстрелов: " + this.guesses  )
+                view.displayMessage("Вы затопили все мои военные корабли!<br>" + "Колличество выстрелов: " + this.guesses)
             }
 
         }
@@ -84,7 +130,7 @@ function parseGuess(guess) {
     if (guess === null || guess.length !== 2) {
         alert("Вводите координаты игрового поля! Например: D3");
     } else {
-        firstChar = guess.charAt(0);
+        let firstChar = guess.charAt(0);
         let row = alphabet.indexOf(firstChar);
         let column = guess.charAt(1);
 
@@ -106,7 +152,8 @@ function init() {
     fireButton.onclick = handleFireButton;
     let guessInput = document.getElementById("guessInput");
     guessInput.onkeypress = handleKeyPress;
-    handleKeyPress()
+    handleKeyPress();
+    model.generateShipLocation();
 
 }
 

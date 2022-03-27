@@ -1,0 +1,12 @@
+body {
+    background-color: black;
+}
+
+
+.welcome {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    margin: auto;
+    background: url("img/wallpaper.jpg") no-repeat;
+}
