@@ -16,7 +16,7 @@ let view = {
 };
 
 let model = {
-    bordSize: 7,
+    boardSize: 7,
 
     numShips: 3,
 
@@ -36,9 +36,9 @@ let model = {
             if (index >= 0) {
                 ship.hits[index] = "hit";
                 view.displayHit(guess);
-                view.displayMessage("HIT!");
+                view.displayMessage("Попадение!");
                 if (this.isSunk(ship)) {
-                    view.displayMessage("You sank my battleship!");
+                    view.displayMessage("Вы затопили мой военный корабль!");
                     this.shipsSunk++;
                 }
                 return true;
@@ -47,7 +47,7 @@ let model = {
 
         }
         view.displayMiss(guess);
-        view.displayMessage("You missed.");
+        view.displayMessage("Промах!");
         return false;
     },
 
@@ -64,23 +64,69 @@ let model = {
 let controller = {
     guesses: 0,
     processGuess: function (guess) {
-        
+        let location = parseGuess(guess);
+        if (location) {
+            this.guesses++;
+            let hit = model.fire(location);
+            if (hit && model.shipsSunk === model.numShips) {
+                view.displayMessage("Вы затопили все мои военные корабли!<br>" + "Колличество выстрелов: " + this.guesses  )
+            }
+
+        }
+
     }
 
 }
 
+function parseGuess(guess) {
+    let alphabet = ["A", "B", "C", "D", "E", "F", "G"];
 
-model.fire("53");
-model.fire("06");
-model.fire("16");
-model.fire("26");
-model.fire("34");
-model.fire("24");
-model.fire("44");
-model.fire("12");
-model.fire("11");
-model.fire("10");
+    if (guess === null || guess.length !== 2) {
+        alert("Вводите координаты игрового поля! Например: D3");
+    } else {
+        firstChar = guess.charAt(0);
+        let row = alphabet.indexOf(firstChar);
+        let column = guess.charAt(1);
 
+        if (isNaN(row) || isNaN(column)) {
+            alert("Неверные координаты!")
+        } else if (row < 0 || row >= model.boardSize ||
+            column < 0 || column >= model.boardSize) {
+            alert("За пределами игрового поля!");
+        } else {
+            return row + column;
+        }
+
+    }
+    return null;
+}
+
+function init() {
+    let fireButton = document.getElementById("fireButton");
+    fireButton.onclick = handleFireButton;
+    let guessInput = document.getElementById("guessInput");
+    guessInput.onkeypress = handleKeyPress;
+    handleKeyPress()
+
+}
+
+function handleFireButton() {
+    let guessInput = document.getElementById("guessInput");
+    let guess = guessInput.value;
+    controller.processGuess(guess);
+    guessInput.value = "";
+}
+
+function handleKeyPress(e) {
+    let fireButton = document.getElementById("fireButton");
+    if (e.keyCode === 13) {
+        fireButton.click();
+        return false;
+    }
+
+}
+
+window.onload = init;
 
 
 

@@ -1,3 +1,4 @@
+/*
 var view = {
     displayMessage: function (msg) {
         var messageArea = document.getElementById("messageArea");
@@ -73,4 +74,4 @@ model.fire("24");
 model.fire("44");
 model.fire("12");
 model.fire("11");
-model.fire("10");
+model.fire("10");*/
