@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Types</title>
+</head>
+<body>
+
+<!--Примитивы: числа, строки, булевские значения,
+null и undefined. Все остальное — объекты.-->
+<script>
+    let test1 = "abcdef";       //string
+    let test2 = 123;        //number
+    let test3 = true;       //boolean
+    let test4 = {};         //object
+    let test5 = [];         //object
+    let test6;      //undefined
+    let test7 = {"abcdef": 123};        //object
+    let test8 = ["abcdef", 123];        //object
+
+    function test9() {          //function
+        return "abcdef"
+    };
+    let test10 = null;     //null
+    let test11 = 0 / 0;       //number  «число, не имеющее представления» имеет числовой тип
+
+    /*null - «Здесь мог бы быть объект,
+     но, к сожалению, его нет». Именно этот смысл заложен в null.*/
+
+
+    /*NaN (Not a number) - {0/0; "food"*100; Math.sqrt(-9)}
+    *  NaN != NaN
+    *  if (isNaN(myNum)) {
+    *        myNum = 0;
+    *  }
+    * */
+    console.log(typeof test1);
+    console.log(typeof test2);
+    console.log(typeof test3);
+    console.log(typeof test4);
+    console.log(typeof test5);
+    console.log(typeof test6);
+    console.log(typeof test7);
+    console.log(typeof test8);
+    console.log(typeof test9);
+    console.log(typeof test10);
+    console.log(typeof test11);
+    /*
+    Псевдоложные значения:
+    undefined
+    null
+    0
+    пустая строка
+    NaN
+     */
+</script>
+<!--Просто запомните смысл
+каждого из значений (undefined и null) и знайте, что null чаще
+всего используется там, где объект еще не создан или не найден,
+а undefined — для неинициализированных переменных, отсутствующих свойств объектов или отсутствующих значений в массивах-->
+</body>
+</html>

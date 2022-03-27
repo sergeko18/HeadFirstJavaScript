@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dog</title>
+</head>
+<body>
+<script>
+    let dog = {
+        name: "Fido",
+        weight: 20.2,
+        age: 4,
+        breed: "Mixed",
+        activity: "fetch balls"
+    };
+
+    let bark;
+    if (dog.weight > 20) {
+        bark = "WOOF, WOOF!"
+
+    } else {
+        bark = "woof, woof!"
+    }
+
+    dog.bark = bark;
+
+
+    let speak = dog.name + " says " + dog.bark + " when he wants to " + dog.activity;
+    document.write(speak);
+
+
+    function loseWeight(dog, amount) {
+        dog.weight = dog.weight - amount;
+    }
+
+    loseWeight(dog, 10)
+    alert(dog.name + " now weighs " + dog.weight);
+    document.write(speak);
+</script>
+
+</body>
+</html>

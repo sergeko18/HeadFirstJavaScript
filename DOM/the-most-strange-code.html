@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW</title>
+    <script>
+        function Duck(sound) {
+            this.sound = sound;
+            this.quack = function () {
+                console.log(this.sound);
+            }
+        }
+
+        let toy = new Duck("quack quack");
+        toy.quack();  //quack quack (console.log(this.sound);)
+
+        let toy2 = new Duck("Cip Cip");
+        toy2.quack(); //Cip Cip (console.log(this.sound);)
+
+        console.log(typeof toy); //object
+        console.log(toy instanceof Duck); //true
+    </script>
+</head>
+<body>
+
+</body>
+</html>
