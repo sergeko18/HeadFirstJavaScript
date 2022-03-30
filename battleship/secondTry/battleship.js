@@ -17,22 +17,25 @@ let view = {
 
 let model = {
     boardSize: 7,
-
     numShips: 3,
+    shipsSunk: 0,
+    shipLength: 3,
 
     ships: [
         {locations: [0, 0, 0], hits: ["", "", ""]},
         {locations: [0, 0, 0], hits: ["", "", ""]},
         {locations: [0, 0, 0], hits: ["", "", ""]}],
 
-    shipsSunk: 0,
-
-    shipLength: 3,
 
     fire: function (guess) {
         for (let i = 0; i < this.numShips; i++) {
-            let ship = this.ships[i];
+            let ship = this.ships[i];  //Для каждого корабля
             let index = ship.locations.indexOf(guess);
+            /*Массивы поддерживают метод indexOf,
+            сходный с методом indexOf строк. Метод
+            indexOf получает значение и возвращает
+            индекс значения, если оно присутствует
+            в массиве, или –1, если оно отсутствует.*/
             if (index >= 0) {
                 ship.hits[index] = "hit";
                 view.displayHit(guess);
@@ -60,7 +63,7 @@ let model = {
         return true;
     },
 
-    generateShipLocation: function () {
+    generateShipLocations: function () {
         let locations;
         for (let i = 0; i < this.numShips; i++) {
             do {
@@ -68,6 +71,8 @@ let model = {
             } while (this.collision(locations));
             this.ships[i].locations = locations;
         }
+        console.log("Ships array: ");
+        console.log(this.ships);
     },
 
     generateShip: function () {
@@ -76,10 +81,10 @@ let model = {
 
         if (direction === 1) {
             row = (Math.floor(Math.random() * this.boardSize));
-            col = (Math.floor(Math.random() * this.boardSize - this.shipLength));
+            col = (Math.floor(Math.random() * (this.boardSize - this.shipLength)));
 
         } else {
-            row = (Math.floor(Math.random() * this.boardSize - this.shipLength));
+            row = (Math.floor(Math.random() * (this.boardSize - this.shipLength)));
             col = (Math.floor(Math.random() * this.boardSize));
 
         }
@@ -94,9 +99,9 @@ let model = {
         return newShipLocations;
     },
 
-    collision: function (locations) {
+    collision: function(locations) {
         for (let i = 0; i < this.numShips; i++) {
-            let ship = model.ships[i]
+            let ship = this.ships[i]
             for (let j = 0; j < locations.length; j++) {
                 if (ship.locations.indexOf(locations[j]) >= 0) {
                     return true;
@@ -152,8 +157,7 @@ function init() {
     fireButton.onclick = handleFireButton;
     let guessInput = document.getElementById("guessInput");
     guessInput.onkeypress = handleKeyPress;
-    handleKeyPress();
-    model.generateShipLocation();
+    model.generateShipLocations();
 
 }
 
