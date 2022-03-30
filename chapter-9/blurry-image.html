@@ -26,6 +26,8 @@
                 images[i].onclick = showAnswer;
             }
 
+
+
         }
 
         function showAnswer(eventObj) {
@@ -36,7 +38,15 @@
             let name = image.id;
             name = "img/" + name + ".jpg"
             image.src = name;
+            setTimeout(reBlur, 2000, image);
 
+
+        }
+
+        function reBlur(image) {
+            let name = image.id;
+            name = "img/" + name + "blur.jpg"
+            image.src = name;
 
         }
 
