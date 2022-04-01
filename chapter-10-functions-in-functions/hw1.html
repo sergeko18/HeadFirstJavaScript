@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HM1</title>
+</head>
+<body>
+
+<script>
+    let winner = function() { alert("WINNER!") };
+    let loser = function() { alert("LOSER!") };
+    // Простой тест
+    winner();
+    // Присваивание ссылок переменным
+    let a = winner;
+    let b = loser;
+    let c = loser;
+    a();
+    b();
+    // Проверяем удачу в игре “наперстки”
+    c = a;
+    a = b;
+    b = c;
+    c = a;
+    a = c;
+    a = b;
+    b = c;
+    a();
+</script>
+
+</body>
+</html>

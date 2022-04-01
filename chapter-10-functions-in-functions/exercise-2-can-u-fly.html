@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>I believe I can fly! </title>
+</head>
+<body>
+<script>
+    let passengers = [
+        {name: "Jane Doloop", paid: true},
+        {name: "Dr. Evel", paid: true},
+        {name: "Sue Property", paid: false},
+        {name: "John Funcall", paid: true}
+    ];
+
+
+    function processPassengers(passengers, testFunction) {
+        for (let i = 0; i < passengers.length; i++) {
+
+            if (testFunction(passengers[i])) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+
+    function checkNoFlyList(passenger) {
+        return (passenger !== "Dr. Evel");
+    }
+
+    function checkPayOrNot(passenger) {
+        return (passenger.paid)
+
+    }
+
+
+    let allCanFly = processPassengers(passengers, checkNoFlyList);
+    if (allCanFly) {
+        alert("All passengers can fly!")
+    } else {
+        alert("We can not fly, because Dr. Evel on the board")
+    }
+
+    let allPaid = processPassengers(passengers, checkPayOrNot);
+    if (allPaid) {
+        alert("Everyone passengers paid for fly!");
+    } else {
+        alert("Someone did not pay for fly!")
+    }
+
+
+</script>
+
+</body>
+</html>
