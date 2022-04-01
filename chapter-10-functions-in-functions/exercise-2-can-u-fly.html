@@ -7,10 +7,10 @@
 <body>
 <script>
     let passengers = [
-        {name: "Jane Doloop", paid: true},
-        {name: "Dr. Evel", paid: true},
-        {name: "Sue Property", paid: false},
-        {name: "John Funcall", paid: true}
+        {name: "Jane Doloop", paid: true, ticket: "coach"},
+        {name: "Dr. Evel", paid: true, ticket: "firstclass"},
+        {name: "Sue Property", paid: false, ticket: "firstclass"},
+        {name: "John Funcall", paid: true, ticket: "upper-coach"}
     ];
 
 
@@ -35,20 +35,92 @@
 
     }
 
+    function printPassenger(passenger) {
+        return console.log(passenger.name)
+
+    }
 
     let allCanFly = processPassengers(passengers, checkNoFlyList);
     if (allCanFly) {
-        alert("All passengers can fly!")
+        console.log("All passengers can fly!")
     } else {
-        alert("We can not fly, because Dr. Evel on the board")
+        console.log("We can not fly, because Dr. Evel on the board")
     }
 
     let allPaid = processPassengers(passengers, checkPayOrNot);
     if (allPaid) {
-        alert("Everyone passengers paid for fly!");
+        console.log("Everyone passengers paid for fly!");
     } else {
-        alert("Someone did not pay for fly!")
+        console.log("Someone did not pay for fly!")
     }
+
+    processPassengers(passengers, printPassenger);
+
+    function createDrinkOrder(passenger) {
+        let orderFunction;
+        if (passenger.ticket === "coach") {
+            orderFunction = function () {
+                console.log("Do u wanna drink a cap of water or cola?")
+            }
+
+        } else if (passenger.ticket === "upper-coach") {
+            orderFunction = function () {
+                console.log("What do u wanna drink, lemonade or wine?")
+            }
+
+        } else if (passenger.ticket === "firstclass") {
+            orderFunction = function () {
+                console.log("Would you like wine or cocktail?")
+
+            }
+        }
+        return orderFunction;
+    }
+
+    function createDinnerOrder(passenger) {
+        let orderFunction;
+        if (passenger.ticket === "coach") {
+            orderFunction = function () {
+                console.log("Do u wanna eat the nuts or crackers")
+            }
+
+        } else if (passenger.ticket === "upper-coach") {
+            orderFunction = function () {
+                console.log("Do u wanna eat the cheese or something else?")
+            }
+
+        } else if (passenger.ticket === "firstclass") {
+            orderFunction = function () {
+                console.log("Would you like to eat, the pasta or chicken?")
+
+            }
+        }
+        return orderFunction;
+    }
+
+    function serveCustomer(passenger) {
+        let getDrinkOrderFunction = createDrinkOrder(passenger);
+        let getDinnerOrderFunction = createDinnerOrder(passenger);
+        getDrinkOrderFunction();
+
+        // Предложить обед
+        getDinnerOrderFunction();
+
+
+        /*getDrinkOrderFunction();
+        getDrinkOrderFunction();
+        // Забрать мусор
+        getDrinkOrderFunction();*/
+    }
+
+    function servePassengers(passengers) {
+        for (let i = 0; i < passengers.length; i++) {
+            serveCustomer(passengers[i])
+        }
+
+    }
+
+    servePassengers(passengers);
 
 
 </script>
