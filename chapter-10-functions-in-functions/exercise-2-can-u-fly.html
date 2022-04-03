@@ -30,15 +30,15 @@
         return (passenger !== "Dr. Evel");
     }
 
-    function checkPayOrNot(passenger) {
-        return (passenger.paid)
+    /*function checkPayOrNot(passenger) {
+        return (passenger.paid)*/
 
-    }
 
-    function printPassenger(passenger) {
-        return console.log(passenger.name)
 
-    }
+    /* function printPassenger(passenger) {
+         return console.log(passenger.name)
+
+     }*/
 
     let allCanFly = processPassengers(passengers, checkNoFlyList);
     if (allCanFly) {
@@ -47,14 +47,26 @@
         console.log("We can not fly, because Dr. Evel on the board")
     }
 
-    let allPaid = processPassengers(passengers, checkPayOrNot);
+    /*let allPaid = processPassengers(passengers, checkPayOrNot);
     if (allPaid) {
         console.log("Everyone passengers paid for fly!");
     } else {
         console.log("Someone did not pay for fly!")
+    }*/
+
+    function printPassengers(passenger) {
+        let message = passenger.name;
+        if (passenger.paid === true) {
+            message = message + " has paid!";
+        } else {
+            message = message + " has not paid!";
+        }
+        console.log(message);
+        return false;
     }
 
-    processPassengers(passengers, printPassenger);
+
+    processPassengers(passengers, printPassengers);
 
     function createDrinkOrder(passenger) {
         let orderFunction;
