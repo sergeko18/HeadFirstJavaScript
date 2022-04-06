@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hw</title>
+    <script>
+        /*window.onload = init;
+        let cookies = {
+            instructions: "Preheat oven to 350...",
+            bake: function(time) {
+                console.log("Baking the cookies.");
+                setTimeout(done, time);
+            }
+        };
+        function init() {
+            let button = document.getElementById("bake");
+            button.onclick = handleButton;
+        }
+        function handleButton() {
+            console.log("Time to bake the cookies.");
+            cookies.bake(2500);
+        }
+        function done() {
+            alert("Cookies are ready, take them out to cool.");
+            console.log("Cooling the cookies.");
+            let cool = function() {
+                alert("Cookies are cool, time to eat!");
+            };
+            setTimeout(cool, 1000);
+        }*/
+
+        window.onload = function () {
+            let button = document.getElementById("bake");
+            button.onclick = handleButton;
+        }
+        let cookies = {
+            instructions: "Preheat oven to 350...",
+            bake: function (time) {
+                console.log("Baking the cookies.");
+                setTimeout(done, time);
+            }
+        }
+
+        function init() {
+            let button = document.getElementById("bake");
+            button.onclick = handleButton;
+        }
+
+        function handleButton() {
+            console.log("Time to bake the cookies.");
+            cookies.bake(2500);
+        }
+
+        function done() {
+            alert("Cookies are ready, take them out to cool.");
+            console.log("Cooling the cookies.");
+            setTimeout(function () {
+                alert("Cookies are cool, time to eat!");
+            }, 1000);
+        }
+
+
+    </script>
+</head>
+<body>
+<form>
+    <input type="button" id="bake" value="firstButton">
+
+</form>
+
+</body>
+</html>

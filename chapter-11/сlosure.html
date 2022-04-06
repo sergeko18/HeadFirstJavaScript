@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сlosure</title>
+    <script>
+
+        let count = 22; /*Функция makeCounter ищет переменную count в теле функции,
+         а если ее там ненаходит, то выходит на уровень выше*/
+
+
+        function makeCounter() {
+            let count = 0;
+
+            function counter() {
+                count = count + 1;
+                return count;
+            }
+
+            return counter;
+        }
+
+        /*console.log(makeCounter());     ----------    ƒ counter() {
+                                                                count = count + 1;
+                                                                return count;
+                                                        }
+         */
+
+        let doCounter = makeCounter();
+        console.log(doCounter());
+        console.log(doCounter());
+        console.log(doCounter());
+
+        /*---------------------------------------------------------------------*/
+
+        function makeCounter2() {
+            let count = 0;
+            return {
+                increment: function () {
+                    count++;
+                    return count;
+                }
+            };
+        }
+
+        let counter = makeCounter2();
+        console.log(counter.increment());
+        console.log(counter.increment());
+        console.log(counter.increment());
+
+        /*function makePassword(password) {
+            return function () {
+            let passwordGuess = 555;
+                return (passwordGuess === password);
+            };
+        }*/
+
+        function multN(n) {
+            return function (c) {
+                let mN = n * c;
+                return mN;
+            };
+        }
+
+        let doMN = multN(5)
+
+        console.log(doMN(2))
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
