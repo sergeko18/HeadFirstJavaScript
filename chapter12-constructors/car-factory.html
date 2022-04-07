@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <title>Car factory</title>
     <script>
-        function Car(make, model, year, color, passengers, convertible, mileage,) {
-            this.make = make;
-            this.model = model;
-            this.year = year;
-            this.color = color;
-            this.passengers = passengers;
-            this.convertible = convertible;
-            this.mileage = mileage;
+        function Car(params) {
+            this.make = params.make;
+            this.model = params.model;
+            this.year = params.year;
+            this.color = params.color;
+            this.passengers = params.passengers;
+            this.convertible = params.convertible;
+            this.mileage = params.mileage;
             this.started = false;
             this.start = function () {
                 this.started = true;
@@ -29,13 +29,56 @@
             }
         }
 
-        let chevy = new Car("Chevy", "Bel Air", 1957, "red", 2, false, 1021);
-        let cadi = new Car("GM", "Cadillac", 1955, "tan", 5, false, 12892);
-        let taxi = new Car("Webville Motors", "Taxi", 1955, "yellow", 4, false, 281341);
-        let fiat = new Car("Fiat", "500", 1957, "Medium Blue", 2, false, 88000);
-        let testCar = new Car("Webville Motors", "Test Car", 2014, "marine", 2, true, 21);
 
-        let cars = [chevy, cadi, taxi, fiat, testCar];
+        let cadiParams = {
+            make: "GM",
+            model: "Cadillac",
+            year: 1995,
+            color: "tan",
+            passengers: 5,
+            mileage: 12892,
+            convertible: false
+        }
+
+        let taxiParams = {
+            make: "Webville Motors",
+            model: "Taxi",
+            year: 1955,
+            color: "yellow",
+            passengers: 5,
+            mileage: 281341,
+            convertible: false
+        }
+
+        let fiatParams = {
+            color: "Medium Blue",
+            passengers: 2,
+            mileage: 88000,
+            convertible: false,
+            make: "Fiat",
+            model: "500",
+            year: 1957
+
+        }
+
+        let testCarParams = {
+            year: 2014,
+            color: "marine",
+            passengers: 2,
+            make: "Webville Motors",
+            model: "Test Car",
+            mileage: 21,
+            convertible: true
+        }
+
+
+        let cadi = new Car(cadiParams);
+        let taxi = new Car(taxiParams);
+        let fiat = new Car(fiatParams);
+        let testCar = new Car(testCarParams)
+
+
+        let cars = [cadi, taxi, fiat, testCar];
         for (let i = 0; i < cars.length; i++) {
             cars[i].start();
             cars[i].drive();
