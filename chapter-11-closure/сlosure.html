@@ -66,14 +66,26 @@
 
         console.log(doMN(2))
 
-
-        function makeTimer(doneMessage, n) {
+        /*---------------------------------------------------------------------*/
+        /*function makeTimer(doneMessage, n) {
             setTimeout(function () {
                 alert(doneMessage);
             }, n);
         }
 
-        makeTimer("Cookies are done!", 1000);
+        makeTimer("Cookies are done!", 1000);*/
+
+
+        /*---------------------------------------------------------------------*/
+
+        function setTimer(doneMessage, n) {
+            setTimeout(function () {
+                alert(doneMessage);
+            }, n);
+            doneMessage = "OUCH!";
+        }
+
+        setTimer("Cookies are done!", 1000);
 
     </script>
 </head>
