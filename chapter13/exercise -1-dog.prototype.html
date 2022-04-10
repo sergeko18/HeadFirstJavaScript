@@ -12,14 +12,13 @@
         }
 
         function ShowDog(name, breed, weight, handler) {  // Конструктор выставочной собаки
-            this.name = name;
-            this.breed = breed;
-            this.weight = weight;
+            Dog.call(this, name, breed, weight)
             this.handler = handler;
         }
 
         /*-----------Prototypes-----------------------------------------------------*/
-        ShowDog.prototype = new Dog()
+        ShowDog.prototype = new Dog()  // Устанавливаем наследовние
+        ShowDog.prototype.constructor = ShowDog; //  что бы instanceoff рпвильно показывал конструктор
 
         ShowDog.prototype.league = "Webville";
         ShowDog.prototype.stack = function () {
@@ -130,10 +129,27 @@
                                                       в прототипе и наследуется fido.*/
 
 
-        scotty = new ShowDog("Scotty", "Scottish Terrier", 15, "Cookie");
+        let scotty = new ShowDog("Scotty", "Scottish Terrier", 15, "Cookie");
         console.log(scotty.name)
 
         scotty.stand();
+
+
+        if (fido instanceof Dog) {
+            console.log("Fido is a Dog");
+        }
+        if (fido instanceof ShowDog) {
+            console.log("Fido is a ShowDog");
+        }
+
+        if (scotty instanceof Dog) {
+            console.log("Scotty is a Dog");
+        }
+        if (scotty instanceof ShowDog) {
+            console.log("Scotty is a ShowDog");
+        }
+        console.log("Fido constructor is " + fido.constructor);
+        console.log("Scotty constructor is " + scotty.constructor);
 
 
     </script>

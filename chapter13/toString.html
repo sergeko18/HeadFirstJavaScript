@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>toString</title>
+
+    <script>
+        function Robot(name, year, owner) {
+            this.name = name;
+            this.year = year;
+            this.owner = owner;
+        }
+
+        Robot.prototype.toString = function () {
+            return this.name + " Robot belong to " + this.owner;
+        }
+
+        let toy = new Robot("Toy", 2013, "Avary");
+        console.log(toy.toString());
+        console.log("Robot is: " + toy); /*Объект toy преобразуется в строку методом toString
+                                          перед конкатенацией. Если объект toy переопределяет
+                                          toString, то он использует этот метод.*/
+    </script>
+</head>
+<body>
+
+</body>
+</html>

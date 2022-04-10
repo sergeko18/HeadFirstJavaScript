@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Final</title>
+    <script>
+        String.prototype.palindrome = function () {
+            let len = this.length - 1;
+            for (let i = 0; i <= len; i++) {
+                if (this.charAt(i) !== this.charAt(len - i)) {
+                    return false;
+                }
+                if (i === (len - i)) {
+                    return true;
+                }
+            }
+            return true;
+        };
+        let phrases = ["eve", "kayak", "mom", "wow", "Not a palindrome"];
+        for (let i = 0; i < phrases.length; i++) {
+            let phrase = phrases[i];
+            if (phrase.palindrome()) {
+                console.log("'" + phrase + "' is a palindrome");
+            } else {
+                console.log("'" + phrase + "' is NOT a palindrome");
+            }
+        }
+
+        String.prototype.palindrome = function () {
+            let r = this.split("").reverse().join("");
+            return (r === this.valueOf());
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
